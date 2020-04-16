@@ -1,0 +1,25 @@
+version: "3.7"
+networks:
+  netmonk:
+    external: true
+
+services:
+
+  netmonk-bea-ext-1:
+    image: ketitik/hades-netmonk-bea
+    networks:
+      netmonk:
+        aliases:
+          - netmonk-bea
+    volumes:
+      - ${PWD}/conf/bea-ext-1/hades-bea.yaml:/home/hades-netmonk-bea/conf/hades-bea.yaml
+      - ${PWD}/conf/bea-ext-1/snmp.yaml:/home/hades-netmonk-bea/_prombin/snmp/config.yml
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    extra_hosts:
+      - "message-broker.netmonk.ketitik.com:18.139.111.8"
+      - "kafka:18.139.111.8"

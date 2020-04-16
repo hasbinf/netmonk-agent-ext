@@ -1,0 +1,24 @@
+service_data:
+  name: "hybrid.probe"
+  key: "1q2w3e4r5t"
+  address: :8000
+  location: "on premise"
+  scrape_interval: 300
+  heartbeat_interval: 8
+  targets:
+    
+exporters:
+    blackbox:
+      directory_path: _prombin/blackbox
+      address: http://127.0.0.1:9115
+      request_format: /probe?target=%s&module=%s
+    snmp:
+      directory_path: _prombin/snmp
+      address: http://127.0.0.1:9116
+      request_format: /snmp?target=%s&module=%s
+message_broker:
+  address: "kafka:9092"
+  username: "raisaadriana"
+  password: "6Juni1990"
+  topics:
+    - probe_management
