@@ -20,7 +20,7 @@ exporters:
     address: http://127.0.0.1:9116
     request_format: /snmp?target=%s&module=%s
 message_broker:
-  address: "kafka:9092"
+  address: "message-broker.netmonk.ketitik.com:9092"
   username: "raisaadriana"
   password: "6Juni1990"
   topics:
